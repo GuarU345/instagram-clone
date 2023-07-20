@@ -1,11 +1,12 @@
-import InstagramStates from "./MainComponents/InstagramStates"
+import InstagramStories from "./MainComponents/InstagramStories"
 import Post from "./MainComponents/Posts/Post"
+import {POSTS as posts} from "../../mocks/posts"
 
 const Main = () => {
   return (
     <div>
-        <InstagramStates/>
-        <Post/>
+        <InstagramStories/>
+        <Post posts={posts}/>
     </div>
   )
 }
