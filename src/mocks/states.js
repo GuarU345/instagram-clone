@@ -1,0 +1,34 @@
+export const states = [
+    {
+        image:"https://avatars.githubusercontent.com/u/95324317?v=4",
+        userName:"Paisaje123"
+    },
+    {
+        image:"https://avatars.githubusercontent.com/u/53496286?v=4",
+        userName:"Chico123"
+    },
+    {
+        image:"https://avatars.githubusercontent.com/u/95324317?v=4",
+        userName:"Paisaje123"
+    },
+    {
+        image:"https://avatars.githubusercontent.com/u/53496286?v=4",
+        userName:"Chico123"
+    },
+    {
+        image:"https://avatars.githubusercontent.com/u/95324317?v=4",
+        userName:"Paisaje123"
+    },
+    {
+        image:"https://avatars.githubusercontent.com/u/53496286?v=4",
+        userName:"Chico123"
+    },
+    {
+        image:"https://avatars.githubusercontent.com/u/95324317?v=4",
+        userName:"Paisaje123"
+    },
+    {
+        image:"https://avatars.githubusercontent.com/u/53496286?v=4",
+        userName:"Chico123"
+    }
+]
