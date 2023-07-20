@@ -12,7 +12,7 @@ import '../../App.css'
 
 const Navbar = () => {
   return (
-    <div className='pl-1 w-[220px] h-screen'>
+    <div className='pl-1 w-[345px] h-screen border-r-2'>
         <section className='p-[20px]'>
         <h3 className='instagram pb-10 text-2xl'>Instagram</h3>
             <ul className='flex flex-col gap-5'>
