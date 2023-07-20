@@ -1,3 +1,4 @@
+import Main from "./components/Main/Main"
 import Navbar from "./components/Navbar/Navbar"
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
     <div className="grid grid-cols-3">
      <Navbar/>
      <div>
-      Content
+      <Main/>
      </div>
      <div>
       User
