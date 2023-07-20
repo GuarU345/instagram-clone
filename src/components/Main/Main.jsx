@@ -1,5 +1,5 @@
 import InstagramStates from "./MainComponents/InstagramStates"
-import Post from "./MainComponents/Post"
+import Post from "./MainComponents/Posts/Post"
 
 const Main = () => {
   return (
