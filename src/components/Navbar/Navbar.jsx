@@ -9,8 +9,14 @@ import {
 } from 'react-icons/pi'
 import NavbarItem from './NavbarComponents/NavbarItem'
 import '../../App.css'
+import { useState } from 'react'
 
 const Navbar = () => {
+  
+  const createPost = () => {
+    
+  }
+
   return (
     <div className='pl-1 w-[345px] h-screen border-r-2'>
         <section className='p-[20px]'>
@@ -34,7 +40,7 @@ const Navbar = () => {
               <NavbarItem title="Notificaciones">
                 <PiHeartBold/>
               </NavbarItem>
-              <NavbarItem title="Crear">
+              <NavbarItem onClick={createPost} title="Crear">
                 <PiPlusSquareBold/>
               </NavbarItem>
               <NavbarItem title="Perfil">
