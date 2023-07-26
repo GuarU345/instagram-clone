@@ -4,7 +4,16 @@ export default {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      transitionProperty: {
+        'height': 'height', 
+        'opacity': 'opacity', 
+      },
+      transitionDuration: {
+        'slow': '500ms', 
+        'fast': '150ms', 
+      },
+    },
   },
   plugins: [],
 }
