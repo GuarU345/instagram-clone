@@ -19,6 +19,10 @@ const Login = () => {
     }
   }
 
+  const navigateToRegister = () => {
+    navigate("/register")
+  }
+
   return (
     <div className="grid h-screen place-content-center gap-4">
     <form onSubmit={handleSubmit} className="flex flex-col w-[400px] border-[1px] items-center p-4">
@@ -32,7 +36,7 @@ const Login = () => {
       </section>
     </form>
     <section className="flex justify-center gap-2 p-4 border-2">
-      <span >No tienes una cuenta?</span><a className="text-sky-600 font-bold" href="">Registrate</a>
+      <span >No tienes una cuenta?</span><a className="text-sky-600 font-bold" onClick={navigateToRegister}>Registrate</a>
     </section>
   </div>
   )
