@@ -5,12 +5,14 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import { openPostModalContext } from "../contexts/OpenPostModal";
 import CreatePostModal from "./CreatePostModal";
 import { fetchCreateNewPost } from "../../services/posts";
+import { getPostsContext } from "../contexts/GetPostsContext";
 
 const PostModal = () => {
   const [image, setImage] = useState(null);
   const [text, setText] = useState("");
   const [openCreatePostModal, setOpenCreatePostModal] = useState(false);
   const { openPostModal, setOpenPostModal } = useContext(openPostModalContext);
+  const { getPosts } = useContext(getPostsContext);
 
   const handleImageChange = (event) => {
     const imageToSend = event.target.files[0];
@@ -50,8 +52,11 @@ const PostModal = () => {
     const newImage = image;
     const formData = new FormData();
     formData.append("description", newText);
-    formData.append("resource", newImage);
+    formData.append("media", newImage);
     const resp = await fetchCreateNewPost(formData);
+    setOpenPostModal(!openPostModal);
+    document.body.style.overflow = "scroll";
+    await getPosts();
     return resp;
   };
 
