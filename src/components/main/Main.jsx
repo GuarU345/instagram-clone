@@ -1,6 +1,5 @@
-import InstagramStories from "./mainComponents/InstagramStories";
-import Post from "./mainComponents/Posts/Post";
-import { POSTS as posts } from "../../mocks/posts";
+import InstagramStories from "./maincomponents/InstagramStories";
+import Post from "./maincomponents/posts/Post";
 import { useContext } from "react";
 import PostModal from "../modals/PostModal";
 import { openPostModalContext } from "../contexts/OpenPostModal";
@@ -11,7 +10,7 @@ const Main = () => {
     <div>
       <InstagramStories />
       {openPostModal ? <PostModal /> : null}
-      <Post posts={posts} />
+      <Post />
     </div>
   );
 };
