@@ -20,7 +20,7 @@ const Login = () => {
   }
 
   const navigateToRegister = () => {
-    navigate("/register")
+    navigate("/signup")
   }
 
   return (
