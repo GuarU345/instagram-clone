@@ -1,7 +1,10 @@
 import { toast } from "react-toastify";
 import { signup } from "../../services/auth";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+
+  const navigate = useNavigate()
 
   const handleSubmit = async(event) => {
     event.preventDefault()
@@ -10,6 +13,7 @@ const Register = () => {
       await signup(formData)
       toast.success("Usuario registrado correctamente")
       document.getElementById("registerForm").reset()
+      navigate("/signin")
     } catch (error) {
       toast.error("Algo salio mal")
     }

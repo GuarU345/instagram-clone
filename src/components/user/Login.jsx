@@ -36,7 +36,7 @@ const Login = () => {
       </section>
     </form>
     <section className="flex justify-center gap-2 p-4 border-2">
-      <span >No tienes una cuenta?</span><a className="text-sky-600 font-bold" onClick={navigateToRegister}>Registrate</a>
+      <span >No tienes una cuenta?</span><a className="text-sky-600 font-bold cursor-pointer" onClick={navigateToRegister}>Registrate</a>
     </section>
   </div>
   )
