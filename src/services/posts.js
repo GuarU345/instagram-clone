@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const INSTAGRAM_URL = "http://192.168.1.30:4000";
+const INSTAGRAM_URL = "http://localhost:4000";
 
 const token = localStorage.getItem("token");
 
