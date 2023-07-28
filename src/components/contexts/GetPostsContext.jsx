@@ -1,13 +1,16 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { fetchGetPosts } from "../../services/posts";
+import { AuthContext } from "./AuthContext";
 
 export const getPostsContext = createContext(null);
 
 const GetPostsProvider = ({ children }) => {
+  const {getToken} = useContext(AuthContext)
   const [posts, setPosts] = useState([]);
 
   const getPosts = async() => {
-    const resp = await fetchGetPosts()
+    const token = getToken()
+    const resp = await fetchGetPosts(token)
     setPosts(resp)
   }
 

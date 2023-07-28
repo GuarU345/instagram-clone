@@ -6,8 +6,10 @@ import { openPostModalContext } from "../contexts/OpenPostModal";
 import CreatePostModal from "./CreatePostModal";
 import { fetchCreateNewPost } from "../../services/posts";
 import { getPostsContext } from "../contexts/GetPostsContext";
+import { AuthContext } from "../contexts/AuthContext";
 
 const PostModal = () => {
+  const {getToken} = useContext(AuthContext)
   const [image, setImage] = useState(null);
   const [text, setText] = useState("");
   const [openCreatePostModal, setOpenCreatePostModal] = useState(false);
@@ -53,7 +55,8 @@ const PostModal = () => {
     const formData = new FormData();
     formData.append("description", newText);
     formData.append("media", newImage);
-    const resp = await fetchCreateNewPost(formData);
+    const token = getToken()
+    const resp = await fetchCreateNewPost(formData, token);
     setOpenPostModal(!openPostModal);
     document.body.style.overflow = "scroll";
     await getPosts();

@@ -3,16 +3,31 @@ import Register from "./components/user/Register";
 import Login from "./components/user/Login";
 import Home from "./components/main/Home";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+import AuthProvider, { AuthContext } from "./components/contexts/AuthContext";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/signin" element={<Login />} />
+        <Route
+          path="/signin"
+          element={
+            <AuthProvider>
+              <Login />
+            </AuthProvider>
+          }
+        />
         <Route path="/" element={<Navigate to="/signin" />} />
         <Route path="/signup" element={<Register />} />
-        <Route path="/home" element={<Home />} />
+        <Route
+          path="/home"
+          element={
+            <AuthProvider>
+              <Home />
+            </AuthProvider>
+          }
+        />
       </Routes>
       <ToastContainer
         position="top-right"
