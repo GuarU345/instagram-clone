@@ -11,12 +11,15 @@ import NavbarItem from "./navbarcomponents/NavbarItem";
 import "../../App.css";
 import { useContext } from "react";
 import { openPostModalContext } from "../contexts/OpenPostModal";
+import PostModal from "../modals/PostModal";
+import { useModal } from "../hooks/useModal";
 
 const Navbar = () => {
+  const {isOpen,closeModal,openModal} = useModal()
   const { openPostModal, setOpenPostModal } = useContext(openPostModalContext);
 
   const createPost = () => {
-    setOpenPostModal(!openPostModal);
+    openModal();
     document.body.style.overflow = "hidden";
   };
 
@@ -49,6 +52,7 @@ const Navbar = () => {
           <NavbarItem title="Perfil"></NavbarItem>
         </ul>
       </section>
+      <PostModal isOpen={isOpen} handleClose={closeModal}/>
     </div>
   );
 };
