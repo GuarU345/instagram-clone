@@ -10,13 +10,20 @@ const api = axios.create({
 
 export const fetchCreateNewPost = async (payload, token) => {
   const { data } = await api.post(`/post`, payload, {
-    headers: {Authorization: `Bearer ${token}`}
+    headers: { Authorization: `Bearer ${token}` },
   });
   return data;
 };
 
 export const fetchGetPosts = async (token) => {
   const { data } = await api.get(`/post`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return data;
+};
+
+export const fetchPostById = async (idPost, token) => {
+  const { data } = await api.get(`/post/${idPost}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return data;
