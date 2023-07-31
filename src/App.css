@@ -3,3 +3,7 @@
 .instagram{
     font-family: 'Pacifico', cursive;
 }
+
+.custom-scrollbar ::-webkit-scrollbar {
+    display: none;
+}

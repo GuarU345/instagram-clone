@@ -9,9 +9,9 @@ const Home = () => {
   return (
     <OpenPostModalProvider>
       <GetPostsProvider>
-          <div className="grid grid-cols-3">
+          <div className="grid grid-cols-3 h-screen overflow-y-hidden">
             <Navbar />
-            <div className="w-[530px]">
+            <div className="w-[530px] overflow-scroll">
               <Main />
             </div>
             <div>User</div>
