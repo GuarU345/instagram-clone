@@ -3,16 +3,19 @@ import { useModal } from "../../../hooks/useModal";
 import Modal from "../../../shared/Modal";
 import { useFetch } from "../../../hooks/useFetch";
 import { useCreateComment } from "../../../hooks/useCreateComment";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { getPostsContext } from "../../../contexts/GetPostsContext";
 
 const CommentMain = ({ ...attributes }) => {
   const { post } = useFetch(attributes.id);
   const comment = useRef(null)
   const {createComment} = useCreateComment(attributes.id)
   
+  
   const handleSubmit = async (event) => {
     event.preventDefault()
     await createComment(comment.current.value)
+    comment.current.value = ''
   }
   
   return post === null ? (

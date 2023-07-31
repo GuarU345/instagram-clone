@@ -1,12 +1,13 @@
 import { BsHeart, BsChat, BsSend, BsSave } from "react-icons/bs";
 import { fetchLikePost } from "../../../../services/posts";
-import { useContext, useState, useRef } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { toast } from "react-toastify";
 import { getPostsContext } from "../../../contexts/GetPostsContext";
 import { CreateNewComment } from "../../../../services/comments";
 import { AuthContext } from "../../../contexts/AuthContext";
 import CommentMain from "../comments/CommentMain";
 import { useModal } from "../../../hooks/useModal";
+import useIsInViewPort from "../../../hooks/useIsInViewport";
 
 const regex = /(=?(.mp4))/;
 
@@ -17,6 +18,8 @@ const BodyPost = ({ post }) => {
   const { getToken } = useContext(AuthContext);
 
   const commentRef = useRef(null);
+  const video = useRef(null);
+  const isInViewport1 = useIsInViewPort(video);
 
   const handleLikePost = async (event) => {
     event.preventDefault();
@@ -29,14 +32,19 @@ const BodyPost = ({ post }) => {
     }
   };
 
+  const comments =
+    post.comments === 1
+      ? `ver ${post.comments} comentario`
+      : `ver los ${post.comments} comentarios`;
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const token = getToken();
     const comment = commentRef.current.value;
     try {
       await CreateNewComment(post.id, comment, token);
-      document.getElementById("form-comment").reset();
       await getPosts();
+      commentRef.current.value = "";
     } catch (error) {
       toast.error("Algo salio mal");
     }
@@ -47,14 +55,25 @@ const BodyPost = ({ post }) => {
     document.body.style.overflow = "hidden";
   };
 
+  useEffect(() => {
+    if (video.current instanceof HTMLVideoElement) {
+      if (!isInViewport1) {
+        video.current.pause();
+        video.current.currentTime = 0;
+        return;
+      }
+      video.current.play();
+    }
+  }, [isInViewport1]);
+
   return (
     <div>
       {regex.test(post.media[0]) ? (
-        <video controls autoPlay muted>
+        <video controls autoPlay muted ref={video}>
           <source src={post.media[0]} />
         </video>
       ) : (
-        <img src={post.media[0]} alt="image of post" />
+        <img src={post.media[0]} alt="image of post" ref={video} />
       )}
       <ul className="flex text-2xl gap-4 p-2 items-center">
         <li className="cursor-pointer hover:text-gray-400">
@@ -78,9 +97,14 @@ const BodyPost = ({ post }) => {
       <section className="flex flex-col p-2">
         <span className="">{post.votes} Me gusta</span>
         <span>{post.description}</span>
-        <a className="text-gray-400" onClick={openCommentsModal}>
-          Ver los {post.comments} comentarios
-        </a>
+        {post.comments ? (
+          <a
+            className="text-gray-400 cursor-pointer"
+            onClick={openCommentsModal}
+          >
+            {comments}
+          </a>
+        ) : null}
         <form onSubmit={handleSubmit} id="form-comment">
           <input
             ref={commentRef}

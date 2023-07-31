@@ -51,6 +51,7 @@ const HeaderPost = ({ post }) => {
       <div className="flex gap-2">
         <span className="font-bold">{post.username}</span>
         <DateCom input={post.date} />
+        <button className="bg-none text-sky-600 font-bold">Seguir</button>
       </div>
       <span className="ml-auto">
         <BsThreeDots />
