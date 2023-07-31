@@ -4,6 +4,7 @@ function Modal({ children, isOpen, handleClose }) {
   const close = (event) => {
     if (event.key === "Escape") {
       handleClose();
+      document.body.style.overflow="scroll"
     }
   };
 
