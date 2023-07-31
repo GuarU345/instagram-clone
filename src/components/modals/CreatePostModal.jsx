@@ -11,7 +11,7 @@ const CreatePostModal = ({post}) => {
   }
 
   return (
-    <div className="flex items-center border-2 z-10 bg-white">
+    <div className="flex absolute bottom-0 w-full items-center border-2 z-10 bg-white">
         <form className="flex flex-col w-full">
           <textarea 
           className="w-full outline-none"

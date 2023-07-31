@@ -26,8 +26,8 @@ const DateCom = ({ input }) => {
   };
 
   useEffect(() => {
-    setInterval(getDateOfPost(input), 60 * 1000);
-  }, []);
+    getDateOfPost(input)
+  },[]);
 
   return <span className="text-gray-500">{passTime}</span>;
 };

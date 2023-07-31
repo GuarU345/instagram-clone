@@ -8,6 +8,8 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import CommentMain from "../comments/CommentMain";
 import { useModal } from "../../../hooks/useModal";
 
+const regex = /(=?(.mp4))/;
+
 const BodyPost = ({ post }) => {
   const { closeModal, isOpen, openModal } = useModal();
   const [isVoted, setIsVoted] = useState(post.isVoted);
@@ -47,7 +49,13 @@ const BodyPost = ({ post }) => {
 
   return (
     <div>
-      <img src={post.media[0]} alt="image of post" />
+      {regex.test(post.media[0]) ? (
+        <video controls autoPlay muted>
+          <source src={post.media[0]} />
+        </video>
+      ) : (
+        <img src={post.media[0]} alt="image of post" />
+      )}
       <ul className="flex text-2xl gap-4 p-2 items-center">
         <li className="cursor-pointer hover:text-gray-400">
           <BsHeart
@@ -83,7 +91,9 @@ const BodyPost = ({ post }) => {
         </form>
       </section>
       <hr />
-      <CommentMain handleClose={closeModal} isOpen={isOpen} />
+      {isOpen ? (
+        <CommentMain handleClose={closeModal} isOpen={isOpen} id={post.id} />
+      ) : null}
     </div>
   );
 };

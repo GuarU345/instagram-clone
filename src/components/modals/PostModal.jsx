@@ -16,6 +16,11 @@ const PostModal = ({ ...attributes }) => {
   const { getPosts } = useContext(getPostsContext);
   const [openCreatePostModal, setOpenCreatePostModal] = useState(false);
 
+  const handleClose = () => {
+    attributes.handleClose();
+    resetInputs();
+  };
+
   const handleImageChange = (event) => {
     const imageToSend = event.target.files[0];
     setImage(imageToSend);
@@ -51,8 +56,7 @@ const PostModal = ({ ...attributes }) => {
     const token = getToken();
     const resp = await fetchCreateNewPost(formData, token);
     await getPosts();
-    attributes.handleClose();
-    resetInputs();
+    handleClose();
     document.body.style.overflow = "scroll";
     return resp;
   };
@@ -64,7 +68,7 @@ const PostModal = ({ ...attributes }) => {
   };
 
   return (
-    <Modal {...attributes}>
+    <Modal {...attributes} handleClose={handleClose}>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-2xl z-10 w-2/6 h-[90%] rounded-lg">
         {image === null ? (
           <>
