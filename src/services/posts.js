@@ -8,30 +8,32 @@ const api = axios.create({
   baseURL: INSTAGRAM_URL + "/api/v1",
 });
 
-export const fetchCreateNewPost = async (payload, token) => {
+const fetchCreateNewPost = async (payload, token) => {
   const { data } = await api.post(`/post`, payload, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return data;
 };
 
-export const fetchGetPosts = async (token) => {
+const fetchGetPosts = async (token) => {
   const { data } = await api.get(`/post`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return data;
 };
 
-export const fetchPostById = async (idPost, token) => {
+const fetchPostById = async (idPost, token) => {
   const { data } = await api.get(`/post/${idPost}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return data;
 };
 
-export const fetchLikePost = async (idPost) => {
+const fetchLikePost = async (idPost) => {
   const { data } = await api.get(`/post/${idPost}/vote`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return data;
 };
+
+export { fetchCreateNewPost, fetchGetPosts, fetchLikePost, fetchPostById };

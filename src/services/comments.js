@@ -2,7 +2,7 @@ import axios from "axios";
 
 const INSTAGRAM_URL = "http://192.168.1.30:4000";
 
-export const CreateNewComment = async (idPost, body, token) => {
+const CreateNewComment = async (idPost, body, token) => {
   const { data } = axios.post(
     `${INSTAGRAM_URL}/api/v1/post/${idPost}/comment`,
     {
@@ -12,3 +12,13 @@ export const CreateNewComment = async (idPost, body, token) => {
   );
   return data;
 };
+
+const fetchSpecificCommentsByPost = async (idPost, token) => {
+  const { data } = await axios.get(
+    `${INSTAGRAM_URL}/api/v1/post/${idPost}/comment`,
+    { headers: { Authorization: `Bearer ${token}` } }
+  );
+  return data;
+};
+
+export { CreateNewComment, fetchSpecificCommentsByPost };
