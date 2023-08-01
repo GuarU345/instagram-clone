@@ -5,6 +5,8 @@ import Home from "./components/main/Home";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AuthProvider, { AuthContext } from "./components/contexts/AuthContext";
+import Profile from "./components/profile/Profile";
+import Layout from "./components/main/Layout";
 
 function App() {
   return (
@@ -20,6 +22,16 @@ function App() {
         />
         <Route path="/" element={<Navigate to="/signin" />} />
         <Route path="/signup" element={<Register />} />
+        <Route
+          path="/profile"
+          element={
+            <AuthProvider>
+              <Layout>
+                <Profile />
+              </Layout>
+            </AuthProvider>
+          }
+        />
         <Route
           path="/home"
           element={
