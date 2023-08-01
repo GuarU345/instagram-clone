@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
+import { fetchFollowUser } from "../../../../services/user";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 const DateCom = ({ input }) => {
   const [passTime, setPassTime] = useState();
@@ -26,32 +28,48 @@ const DateCom = ({ input }) => {
   };
 
   useEffect(() => {
-    getDateOfPost(input)
-  },[]);
+    getDateOfPost(input);
+  }, []);
 
   return <span className="text-gray-500">{passTime}</span>;
 };
 
 const HeaderPost = ({ post }) => {
+  const { getToken } = useContext(AuthContext);
+  const [isFollowed, setIsFollowed] = useState();
+
+  const handleFollowUser = async () => {
+    const token = getToken();
+    const resp = await fetchFollowUser(post.userID, token);
+    setIsFollowed(resp);
+  };
+
   return (
     <div className="flex flex-row p-2 items-center gap-4">
-      {post.photo === null ?
-      <img
-        className="rounded-full w-10 h-10"
-        src="https://w7.pngwing.com/pngs/998/203/png-transparent-black-and-white-no-to-camera-logo-video-on-demand-retail-website-simple-no-miscellaneous-television-text.png"
-        alt={`image of user ${post.username}`}
-      />
-       : 
-      <img
-        className="rounded-full w-10 h-10"
-        src={post.photo}
-        alt={`image of user ${post.username}`}
-      />
-      }
+      {post.photo === null ? (
+        <img
+          className="rounded-full w-10 h-10"
+          src="https://w7.pngwing.com/pngs/998/203/png-transparent-black-and-white-no-to-camera-logo-video-on-demand-retail-website-simple-no-miscellaneous-television-text.png"
+          alt={`image of user ${post.username}`}
+        />
+      ) : (
+        <img
+          className="rounded-full w-10 h-10"
+          src={post.photo}
+          alt={`image of user ${post.username}`}
+        />
+      )}
       <div className="flex gap-2">
         <span className="font-bold">{post.username}</span>
         <DateCom input={post.date} />
-        <button className="bg-none text-sky-600 font-bold">Seguir</button>
+        {isFollowed ? null : (
+          <button
+            className="bg-none text-sky-600 font-bold"
+            onClick={handleFollowUser}
+          >
+            Seguir
+          </button>
+        )}
       </div>
       <span className="ml-auto">
         <BsThreeDots />

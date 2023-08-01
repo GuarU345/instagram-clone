@@ -8,28 +8,25 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import CommentMain from "../comments/CommentMain";
 import { useModal } from "../../../hooks/useModal";
 import useIsInViewPort from "../../../hooks/useIsInViewport";
+import { useLike } from "../../../hooks/useLike";
 
 const regex = /(=?(.mp4))/;
 
 const BodyPost = ({ post }) => {
   const { closeModal, isOpen, openModal } = useModal();
-  const [isVoted, setIsVoted] = useState(post.isVoted);
   const { getPosts } = useContext(getPostsContext);
   const { getToken } = useContext(AuthContext);
-
+  const { likePost } = useLike(post.id);
+  const [isVoted, setIsVoted] = useState(post.isVoted);
   const commentRef = useRef(null);
   const video = useRef(null);
   const isInViewport1 = useIsInViewPort(video);
 
   const handleLikePost = async (event) => {
     event.preventDefault();
-    try {
-      await fetchLikePost(post.id);
-      setIsVoted(!post.isVoted);
-      await getPosts();
-    } catch (error) {
-      toast.error("Algo salio mal");
-    }
+    await likePost();
+    setIsVoted(!post.isVoted);
+    getPosts();
   };
 
   const comments =
@@ -82,7 +79,10 @@ const BodyPost = ({ post }) => {
             className={`${isVoted ? "text-red-700" : ""}`}
           />
         </li>
-        <li className="cursor-pointer hover:text-gray-400">
+        <li
+          onClick={openCommentsModal}
+          className="cursor-pointer hover:text-gray-400"
+        >
           <BsChat className="transform -scale-x-100" />
         </li>
         <li className="cursor-pointer hover:text-gray-400">
