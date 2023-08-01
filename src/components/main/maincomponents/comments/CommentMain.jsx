@@ -37,7 +37,7 @@ const CommentMain = ({ ...attributes }) => {
       {post === null ? (
         <h1>Cargando...</h1>
       ) : (
-        <div className="flex w-4/6 h-[90%] bg-slate-100 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div className="flex w-4/6 h-[90%] bg-slate-100 absolute top-1/2 left-1/2 z-10 transform -translate-x-1/2 -translate-y-1/2">
           <div className="w-4/6 bg-white">
             <img
               className="block m-auto h-full w-full object-contain"

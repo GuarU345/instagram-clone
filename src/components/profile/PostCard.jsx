@@ -1,6 +1,7 @@
 import React from "react";
 import { useModal } from "../hooks/useModal";
 import CommentMain from "../main/maincomponents/comments/CommentMain";
+import { BsFillChatFill, BsHeart, BsHeartFill } from "react-icons/bs";
 
 function PostCard({ post }) {
   const { isOpen, closeModal, openModal } = useModal();
@@ -12,13 +13,20 @@ function PostCard({ post }) {
 
   return (
     <>
-      <div key={post.id} className="w-[200px] overflow-hidden">
+      <div
+        key={post.id}
+        onClick={openCommentsModal}
+        className="image-container w-[200px] relative"
+      >
         <img
-          className="w-full h-[200px] cursor-pointer object-center hover:brightness-75"
+          className="w-full h-[200px] cursor-pointer object-center"
           src={post.media}
           alt=""
-          onClick={openCommentsModal}
         />
+        <div className="data-icons">
+          <BsHeartFill />
+          <BsFillChatFill />
+        </div>
       </div>
 
       {isOpen ? (

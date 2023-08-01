@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { fetchProfileData } from "../../services/user";
 import { AuthContext } from "../contexts/AuthContext";
 import "../../App.css";
-import { useModal } from "../hooks/useModal";
-import CommentMain from "../main/maincomponents/comments/CommentMain";
 import PostCard from "./PostCard";
 
 const Profile = () => {
