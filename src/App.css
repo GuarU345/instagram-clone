@@ -29,8 +29,3 @@
     font-size: 24px;
     cursor: pointer;
 }
-
-/* Estilo del icono de reproducción (sustituye el contenido según el icono que desees) */
-.play-icon::before {}
-
-/* Estilo del icono al pasar el mouse por encima (opcional) */
