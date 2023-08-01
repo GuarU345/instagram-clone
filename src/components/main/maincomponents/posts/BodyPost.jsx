@@ -1,5 +1,5 @@
-import { BsChat, BsSend, BsSave } from "react-icons/bs";
-import { useContext, useRef, useEffect } from "react";
+import { BsChat, BsSend, BsSave, BsFillPlayFill } from "react-icons/bs";
+import { useContext, useRef, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { getPostsContext } from "../../../contexts/GetPostsContext";
 import { CreateNewComment } from "../../../../services/comments";
@@ -15,6 +15,7 @@ const BodyPost = ({ post }) => {
   const { closeModal, isOpen, openModal } = useModal();
   const { getPosts } = useContext(getPostsContext);
   const { getToken } = useContext(AuthContext);
+  const [isPaused, setIsPaused] = useState(false);
   const commentRef = useRef(null);
   const video = useRef(null);
   const isInViewport1 = useIsInViewPort(video);
@@ -37,6 +38,16 @@ const BodyPost = ({ post }) => {
     }
   };
 
+  const toggleVideoPlayback = () => {
+    if (video.current.paused) {
+      video.current.play();
+      setIsPaused(false);
+    } else {
+      video.current.pause();
+      setIsPaused(true);
+    }
+  };
+
   const openCommentsModal = () => {
     openModal();
     document.body.style.overflow = "hidden";
@@ -56,9 +67,25 @@ const BodyPost = ({ post }) => {
   return (
     <div>
       {regex.test(post.media[0]) ? (
-        <video controls autoPlay muted ref={video}>
-          <source src={post.media[0]} />
-        </video>
+        <div className="relative">
+          <video
+            className="cursor-pointer"
+            onClick={toggleVideoPlayback}
+            autoPlay
+            muted
+            ref={video}
+          >
+            <source src={post.media[0]} />
+          </video>
+          {isPaused && (
+            <div className="play-icon">
+              <BsFillPlayFill
+                className="text-8xl"
+                onClick={toggleVideoPlayback}
+              />
+            </div>
+          )}
+        </div>
       ) : (
         <img src={post.media[0]} alt="image of post" ref={video} />
       )}

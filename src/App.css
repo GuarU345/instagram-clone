@@ -13,3 +13,24 @@
     opacity: 0.5;
     top: 0;
 }
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    color: white;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Estilo del icono de reproducción (sustituye el contenido según el icono que desees) */
+.play-icon::before {}
+
+/* Estilo del icono al pasar el mouse por encima (opcional) */
