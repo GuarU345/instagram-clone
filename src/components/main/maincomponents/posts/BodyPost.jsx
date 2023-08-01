@@ -1,6 +1,5 @@
-import { BsHeart, BsChat, BsSend, BsSave } from "react-icons/bs";
-import { fetchLikePost } from "../../../../services/posts";
-import { useContext, useState, useRef, useEffect } from "react";
+import { BsChat, BsSend, BsSave } from "react-icons/bs";
+import { useContext, useRef, useEffect } from "react";
 import { toast } from "react-toastify";
 import { getPostsContext } from "../../../contexts/GetPostsContext";
 import { CreateNewComment } from "../../../../services/comments";
@@ -8,7 +7,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import CommentMain from "../comments/CommentMain";
 import { useModal } from "../../../hooks/useModal";
 import useIsInViewPort from "../../../hooks/useIsInViewport";
-import { useLike } from "../../../hooks/useLike";
+import Like from "../../Like";
 
 const regex = /(=?(.mp4))/;
 
@@ -16,18 +15,9 @@ const BodyPost = ({ post }) => {
   const { closeModal, isOpen, openModal } = useModal();
   const { getPosts } = useContext(getPostsContext);
   const { getToken } = useContext(AuthContext);
-  const { likePost } = useLike(post.id);
-  const [isVoted, setIsVoted] = useState(post.isVoted);
   const commentRef = useRef(null);
   const video = useRef(null);
   const isInViewport1 = useIsInViewPort(video);
-
-  const handleLikePost = async (event) => {
-    event.preventDefault();
-    await likePost();
-    setIsVoted(!post.isVoted);
-    getPosts();
-  };
 
   const comments =
     post.comments === 1
@@ -73,12 +63,7 @@ const BodyPost = ({ post }) => {
         <img src={post.media[0]} alt="image of post" ref={video} />
       )}
       <ul className="flex text-2xl gap-4 p-2 items-center">
-        <li className="cursor-pointer hover:text-gray-400">
-          <BsHeart
-            onClick={handleLikePost}
-            className={`${isVoted ? "text-red-700" : ""}`}
-          />
-        </li>
+        <Like post={post} />
         <li
           onClick={openCommentsModal}
           className="cursor-pointer hover:text-gray-400"

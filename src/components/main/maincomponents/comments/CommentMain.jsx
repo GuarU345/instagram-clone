@@ -6,6 +6,7 @@ import { BsHeart, BsChat, BsSend, BsSave } from "react-icons/bs";
 import { fetchSpecificCommentsByPost } from "../../../../services/comments";
 import { AuthContext } from "../../../contexts/AuthContext";
 import "../../../../App.css";
+import Like from "../../Like";
 
 const CommentMain = ({ ...attributes }) => {
   const { getToken } = useContext(AuthContext);
@@ -70,9 +71,7 @@ const CommentMain = ({ ...attributes }) => {
             <div className="mt-auto">
               <section className="flex flex-col p-2 border-b-[0.2px] rounded-b-md">
                 <ul className="flex text-2xl font-bold gap-4 p-2 items-center">
-                  <li className="cursor-pointer hover:text-gray-400">
-                    <BsHeart />
-                  </li>
+                  <Like post={post} />
                   <li className="cursor-pointer hover:text-gray-400">
                     <BsChat className="transform -scale-x-100" />
                   </li>
