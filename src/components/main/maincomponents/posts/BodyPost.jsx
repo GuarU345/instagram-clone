@@ -57,10 +57,12 @@ const BodyPost = ({ post }) => {
     if (video.current instanceof HTMLVideoElement) {
       if (!isInViewport1) {
         video.current.pause();
+        setIsPaused(true);
         video.current.currentTime = 0;
         return;
       }
       video.current.play();
+      setIsPaused(false);
     }
   }, [isInViewport1]);
 
