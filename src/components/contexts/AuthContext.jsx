@@ -1,7 +1,10 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 export const AuthContext = createContext(null);
 
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
 
 function AuthProvider({ children }) {
   const setToken = (token) => {

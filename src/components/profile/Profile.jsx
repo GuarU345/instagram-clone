@@ -47,7 +47,7 @@ const Profile = () => {
       <hr className="w-full" />
       <section className="flex flex-wrap gap-2 w-full">
         {userData?.posts?.map((post) => (
-          <PostCard key={post.id} post={post} />
+          <PostCard key={post.id} post={post} user={userData.id} />
         ))}
       </section>
     </div>
