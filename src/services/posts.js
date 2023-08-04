@@ -1,12 +1,6 @@
-import axios from "axios";
-
-const INSTAGRAM_URL = "http://192.168.1.7:4000";
+import api from "../libs/axios";
 
 const token = localStorage.getItem("token");
-
-const api = axios.create({
-  baseURL: INSTAGRAM_URL + "/api/v1",
-});
 
 const fetchCreateNewPost = async (payload, token) => {
   const { data } = await api.post(`/post`, payload, {

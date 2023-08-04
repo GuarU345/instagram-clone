@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { fetchLikePost } from "../../services/posts";
+import { fetchLikePost } from "../services/posts";
 import { toast } from "react-toastify";
 
 export function useLike(idPost) {

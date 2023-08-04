@@ -1,6 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { fetchPostById } from "../../services/posts";
-import { AuthContext } from "../contexts/AuthContext";
+import {  useEffect, useState } from "react";
 
 export function useFetch(id, fetcher) {
   const [post, setPost] = useState(null);

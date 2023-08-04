@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import BodyPost from "./BodyPost";
 import HeaderPost from "./HeaderPost";
-import { getPostsContext } from "../../../contexts/GetPostsContext";
+import { getPostsContext } from "../../../../contexts/GetPostsContext";
 
 const Post = () => {
   const { posts, setPosts } = useContext(getPostsContext);

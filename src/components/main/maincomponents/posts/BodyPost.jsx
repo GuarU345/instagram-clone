@@ -1,12 +1,12 @@
 import { BsChat, BsSend, BsSave, BsFillPlayFill } from "react-icons/bs";
 import { useContext, useRef, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { getPostsContext } from "../../../contexts/GetPostsContext";
+import { getPostsContext } from "../../../../contexts/GetPostsContext";
 import { CreateNewComment } from "../../../../services/comments";
-import { AuthContext } from "../../../contexts/AuthContext";
+import { AuthContext } from "../../../../contexts/AuthContext";
 import CommentMain from "../comments/CommentMain";
-import { useModal } from "../../../hooks/useModal";
-import useIsInViewPort from "../../../hooks/useIsInViewport";
+import { useModal } from "../../../../hooks/useModal";
+import useIsInViewPort from "../../../../hooks/useIsInViewport";
 import Like from "../../Like";
 
 const regex = /(=?(.mp4))/;

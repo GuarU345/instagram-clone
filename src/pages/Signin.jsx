@@ -1,5 +1,5 @@
 import React from 'react'
-import AuthProvider from '../components/contexts/AuthContext'
+import AuthProvider from '../contexts/AuthContext'
 import Login from '../components/user/Login'
 
 function Signin() {
