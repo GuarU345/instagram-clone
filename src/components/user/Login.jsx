@@ -1,26 +1,15 @@
-import { toast } from "react-toastify";
-import { signing } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import { useAuth } from "../contexts/AuthContext";
 
 const Login = () => {
-  const { setToken } = useContext(AuthContext);
+  const { signin } = useAuth();
 
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    try {
-      const token = await signing(formData);
-      //localStorage.setItem("token",token)
-      setToken(token);
-      toast.success("Inicio de sesion correcto");
-      navigate("/home");
-    } catch (error) {
-      toast.error("Credenciales incorrectas");
-    }
+    signin(formData);
   };
 
   const navigateToRegister = () => {
@@ -28,47 +17,48 @@ const Login = () => {
   };
 
   return (
-    <div className="grid h-screen place-content-center gap-4">
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col w-[400px] border-[1px] items-center p-4"
-      >
-        <h3 className="instagram text-center text-4xl mb-16">Instagram</h3>
-        <section className="flex flex-col gap-2">
+    <main className="grid h-screen place-content-center">
+      <section className="border p-4">
+        <h3 className="instagram text-center text-4xl mt-4 mb-12">Instagram</h3>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-y-2 mx-12">
           <input
-            className="outline-none p-2 border-2 text-sm w-[300px]"
+            className="outline-none p-2 border rounded-md text-sm w-72"
             type="text"
             name="username"
             placeholder="Telefono, usuario o correo electronico"
           />
           <input
-            className="outline-none p-2 border-2 text-sm w-[300px]"
+            className="outline-none p-2 border rounded-md text-sm w-72"
             type="password"
             name="password"
             placeholder="Contraseña"
           />
-          <button
-            type="submit"
-            className="border-2 bg-sky-400 rounded-lg text-white p-2"
-          >
+          <button className="border-2 bg-sky-400 rounded-lg text-white p-2">
             Entrar
           </button>
-          <hr />
-          <a href="" className="text-blue-900 text-center text-xs">
-            Has olvidado la contraseña?
-          </a>
-        </section>
-      </form>
-      <section className="flex justify-center gap-2 p-4 border-2">
-        <span>No tienes una cuenta?</span>
+        </form>
         <a
-          className="text-sky-600 font-bold cursor-pointer"
-          onClick={navigateToRegister}
+          href=""
+          className="text-blue-900 text-center text-xs block w-72 mx-auto mt-4 pt-2 border-t"
         >
-          Registrate
+          Has olvidado la contraseña?
         </a>
       </section>
-    </div>
+
+      <section className="my-4 p-4 border">
+        <p className="text-center">
+          No tienes una cuenta?
+          <span>
+            <a
+              className="pl-4 text-sky-600 font-bold cursor-pointer"
+              onClick={navigateToRegister}
+            >
+              Registrate
+            </a>
+          </span>
+        </p>
+      </section>
+    </main>
   );
 };
 
