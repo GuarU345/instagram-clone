@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { fetchProfileData } from "../../services/user";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import "../../App.css";
 import PostCard from "./PostCard";
 

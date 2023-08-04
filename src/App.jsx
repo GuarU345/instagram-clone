@@ -3,7 +3,7 @@ import Register from "./components/user/Register";
 import Home from "./components/main/Home";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import AuthProvider from "./components/contexts/AuthContext";
+import AuthProvider from "./contexts/AuthContext";
 import Profile from "./components/profile/Profile";
 import Layout from "./components/main/Layout";
 import Signin from "./pages/Signin";

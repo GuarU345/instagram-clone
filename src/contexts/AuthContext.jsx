@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import { toast } from "react-toastify";
-import { signing } from "../../services/auth";
+import { signing } from "../services/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -18,7 +18,7 @@ function AuthProvider({ children }) {
   const signin = async (data) => {
     try {
       const response = await signing(data);
-      setToken(response);
+      localStorage.setItem("token", response);
       toast.success("Inicio de sesión exitoso");
       navigate("/home");
     } catch (error) {
@@ -27,7 +27,7 @@ function AuthProvider({ children }) {
   };
 
   const getToken = () => {
-    return localStorage.getItem("token");
+    return token;
   };
 
   return (

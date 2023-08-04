@@ -1,6 +1,6 @@
 import { BsHeart } from "react-icons/bs";
-import { useLike } from "../hooks/useLike";
-import { getPostsContext } from "../contexts/GetPostsContext";
+import { useLike } from "../../hooks/useLike";
+import { getPostsContext } from "../../contexts/GetPostsContext";
 import { useContext, useState } from "react";
 
 const Like = ({ post }) => {

@@ -1,12 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import CombinedIcons from "../navbar/navbarcomponents/CombinedIcons";
-import { useModal } from "../hooks/useModal";
 import { IoArrowBackOutline } from "react-icons/io5";
-import { openPostModalContext } from "../contexts/OpenPostModal";
 import CreatePostModal from "./CreatePostModal";
 import { fetchCreateNewPost } from "../../services/posts";
-import { getPostsContext } from "../contexts/GetPostsContext";
-import { AuthContext } from "../contexts/AuthContext";
+import { getPostsContext } from "../../contexts/GetPostsContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import Modal from "../shared/Modal";
 
 const PostModal = ({ ...attributes }) => {

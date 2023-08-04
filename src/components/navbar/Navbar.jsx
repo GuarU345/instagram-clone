@@ -10,7 +10,7 @@ import {
 import NavbarItem from "./navbarcomponents/NavbarItem";
 import "../../App.css";
 import PostModal from "../modals/PostModal";
-import { useModal } from "../hooks/useModal";
+import { useModal } from "../../hooks/useModal";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {

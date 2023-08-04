@@ -1,10 +1,10 @@
 import Modal from "../../../shared/Modal";
-import { useFetch } from "../../../hooks/useFetch";
-import { useCreateComment } from "../../../hooks/useCreateComment";
-import { useContext, useEffect, useRef, useState } from "react";
-import { BsHeart, BsChat, BsSend, BsSave } from "react-icons/bs";
+import { useFetch } from "../../../../hooks/useFetch";
+import { useCreateComment } from "../../../../hooks/useCreateComment";
+import { useEffect, useRef, useState } from "react";
+import {  BsChat, BsSend, BsSave } from "react-icons/bs";
 import { fetchSpecificCommentsByPost } from "../../../../services/comments";
-import { AuthContext, useAuth } from "../../../contexts/AuthContext";
+import {  useAuth } from "../../../../contexts/AuthContext";
 import "../../../../App.css";
 import Like from "../../Like";
 

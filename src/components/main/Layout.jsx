@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../navbar/Navbar";
-import OpenPostModalProvider from "../contexts/OpenPostModal";
-import GetPostsProvider from "../contexts/GetPostsContext";
+import OpenPostModalProvider from "../../contexts/OpenPostModal";
+import GetPostsProvider from "../../contexts/GetPostsContext";
 
 const Layout = ({ children }) => {
   return (

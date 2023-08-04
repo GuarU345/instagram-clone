@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { fetchFollowUser } from "../../../../services/user";
-import { AuthContext } from "../../../contexts/AuthContext";
+import { AuthContext } from "../../../../contexts/AuthContext";
 
 const DateCom = ({ input }) => {
   const [passTime, setPassTime] = useState();

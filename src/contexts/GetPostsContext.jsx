@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { fetchGetPosts } from "../../services/posts";
+import { fetchGetPosts } from "../services/posts";
 import { AuthContext } from "./AuthContext";
 
 export const getPostsContext = createContext(null);
