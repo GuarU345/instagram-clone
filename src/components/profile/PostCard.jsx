@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useModal } from "../../hooks/useModal";
 import CommentMain from "../main/maincomponents/comments/CommentMain";
-import { BsFillChatFill, BsHeart, BsHeartFill } from "react-icons/bs";
+import { BsFillChatFill, BsHeartFill } from "react-icons/bs";
 
 function PostCard({ post, user }) {
   const { isOpen, closeModal, openModal } = useModal();

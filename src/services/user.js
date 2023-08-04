@@ -1,19 +1,14 @@
-import axios from "axios";
-
-const INSTAGRAM_URL = "http://192.168.1.7:4000";
+import api from "../libs/axios";
 
 const fetchFollowUser = async (idUser, token) => {
-  const { data } = await axios.get(
-    `${INSTAGRAM_URL}/api/v1/user/${idUser}/follow`,
-    {
-      headers: { Authorization: `Bearer ${token}` },
-    }
-  );
+  const { data } = await api.get(`/api/v1/user/${idUser}/follow`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
   return data;
 };
 
 const fetchProfileData = async (token) => {
-  const { data } = await axios.get(`${INSTAGRAM_URL}/api/v1/user`, {
+  const { data } = await api.get(`/api/v1/user`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return data;
