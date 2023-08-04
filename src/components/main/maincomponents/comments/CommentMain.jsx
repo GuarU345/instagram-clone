@@ -10,7 +10,7 @@ import Like from "../../Like";
 
 import axios from "axios";
 
-const INSTAGRAM_URL = "http://192.168.1.30:4000";
+const INSTAGRAM_URL = "http://192.168.1.7:4000";
 
 const token = localStorage.getItem("token");
 
