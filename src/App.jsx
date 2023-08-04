@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Register from "./components/user/Register";
 import Home from "./components/main/Home";
+import HomeA from "./pages/Home";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AuthProvider from "./contexts/AuthContext";
@@ -26,6 +27,7 @@ function App() {
             </AuthProvider>
           }
         />
+        <Route path="/main" element={<HomeA/>}/>
         <Route
           path="/home"
           element={
