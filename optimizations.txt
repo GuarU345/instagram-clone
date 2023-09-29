@@ -1,1 +1,3 @@
 add react-query to manage minus props and states
+add zustand to manage a global state
+add swr to manage apis
