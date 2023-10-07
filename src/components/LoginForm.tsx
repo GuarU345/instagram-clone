@@ -1,21 +1,31 @@
 import { FormEvent } from "react";
-import { LoginObject } from "../types";
+import { ErrorType, LoginObject } from "../types";
 import { loginService } from "../services/auth";
 import useAuthStore from "../hooks/useAuth";
+import { AxiosError } from "axios";
 
 const loginInputClass =
   "placeholder:text-xs placeholder:font-medium placeholder:text-gray-400 block bg-gray-50 border w-9/12 mx-auto py-2 px-2 rounded";
 
-export default function LoginForm() {
+interface Props {
+  updateError: (params: ErrorType) => void;
+}
+
+export default function LoginForm({ updateError }: Props) {
   const { login } = useAuthStore();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = Object.fromEntries(new window.FormData(e.currentTarget));
 
-    const { token } = await loginService(form as unknown as LoginObject);
+    try {
+      const { token } = await loginService(form as unknown as LoginObject);
 
-    login(token);
+      login(token);
+    } catch (error) {
+      if (error instanceof AxiosError)
+        updateError({ error: true, message: error.response?.data.message });
+    }
   };
 
   return (

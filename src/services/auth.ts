@@ -1,13 +1,8 @@
-import { LoginObject } from "../types";
+import { LoginObject, LoginResponse } from "../types";
 import api from "../utils/axios";
 
 enum Urls {
   LOGIN = "/api/auth/signin",
-}
-
-interface LoginResponse {
-  token: string;
-  message: string;
 }
 
 export async function loginService(values: LoginObject) {
