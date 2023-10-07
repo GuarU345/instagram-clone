@@ -3,6 +3,11 @@ export interface LoginObject {
   password: string;
 }
 
+export type RegisterObject = LoginObject & {
+  email: string;
+  fullname: string;
+};
+
 export interface LoginResponse {
   token: string;
   message: string;
