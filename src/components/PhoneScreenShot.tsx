@@ -28,7 +28,7 @@ export default function PhoneScreenShot() {
         <img
           src={images[currentIndex]}
           alt="Image of screen phone transition"
-          className={`absolute left-[10rem] top-6 animate-screenshot`}
+          className={`absolute left-[9.75rem] top-6 animate-screenshot`}
         />
       </div>
     </div>
