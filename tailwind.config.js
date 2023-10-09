@@ -1,20 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      transitionProperty: {
-        'height': 'height', 
-        'opacity': 'opacity', 
+      animation: {
+        screenshot: "ScreenShot 10s linear infinite",
       },
-      transitionDuration: {
-        'slow': '500ms', 
-        'fast': '150ms', 
-      },
+      keyframes: (theme) => ({
+        ScreenShot: {
+          "0%": { opacity: theme("opacity.0") },
+          "67%": { opacity: theme("opacity.100") },
+          "100%": { opacity: theme("opacity.100") },
+        },
+      }),
     },
   },
   plugins: [],
-}
-
+};

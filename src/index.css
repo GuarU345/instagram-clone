@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
-body {
-    height: 100vh;
-    overflow: hidden;
+.instagram {
+    font-family: 'Pacifico', cursive;
 }
