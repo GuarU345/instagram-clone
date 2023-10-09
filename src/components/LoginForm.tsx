@@ -27,9 +27,11 @@ export default function LoginForm({ updateError }: Props) {
     }
 
     try {
-      const { token } = await loginService(values as unknown as LoginObject);
+      const res = await loginService(values as unknown as LoginObject);
 
-      login(token);
+      const { token, message, ...user } = res;
+
+      login(token, user);
 
       navigate("/");
     } catch (error) {

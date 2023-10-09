@@ -1,17 +1,23 @@
-export interface LoginObject {
+export interface User {
+  fullname: string;
   username: string;
-  password: string;
+  img: string | null;
+  id: number;
 }
+
+export type LoginObject = Omit<User, "fullname" | "img" | "id"> & {
+  password: string;
+};
 
 export type RegisterObject = LoginObject & {
   email: string;
   fullname: string;
 };
 
-export interface LoginResponse {
+export type LoginResponse = User & {
   token: string;
   message: string;
-}
+};
 
 export interface ErrorType {
   message: string;
