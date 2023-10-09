@@ -3,8 +3,12 @@ import { BsPlusSquare } from "react-icons/bs";
 import { PropsWithChildren } from "react";
 import { Link } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
+import useModal from "../hooks/useModal";
+import { ModalNames } from "./Modals";
 
 export default function Layout({ children }: PropsWithChildren) {
+  const { show } = useModal();
+
   return (
     <div className="h-screen">
       <div className="flex">
@@ -17,7 +21,9 @@ export default function Layout({ children }: PropsWithChildren) {
             </li>
             <li className="hover:bg-gray-100 py-3 px-2 rounded-md [&>svg]:text-2xl">
               <BsPlusSquare />
-              <button>Create</button>
+              <button onClick={() => show(ModalNames.CREATE_POST)}>
+                Create
+              </button>
             </li>
             <li className="hover:bg-gray-100 py-3 px-2 rounded-md [&>svg]:text-2xl">
               <FaRegUserCircle />

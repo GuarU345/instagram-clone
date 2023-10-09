@@ -17,3 +17,8 @@ export interface ErrorType {
   message: string;
   error: boolean;
 }
+
+export interface NewPostObject {
+  description: string;
+  media: File;
+}
