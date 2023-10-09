@@ -28,3 +28,16 @@ export interface NewPostObject {
   description: string;
   media: File;
 }
+
+export interface Post {
+  id: number;
+  userID: number;
+  username: string;
+  photo: string | null;
+  media: string[];
+  description: string;
+  comments: number;
+  votes: number;
+  date: Date;
+  isVoted: boolean;
+}
