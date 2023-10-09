@@ -5,6 +5,7 @@ import { createPostService } from "../services/post";
 import { NewPostObject } from "../types";
 import useAuthStore from "../hooks/useAuth";
 import useModal from "../hooks/useModal";
+import { USER_IMAGE_DEFAULT } from "../utils/const";
 
 interface MediaIconProps {
   styles: string;
@@ -176,6 +177,8 @@ function BodyModalCreatePost({
   file,
   ShowImgPrev,
 }: BodyModalProps) {
+  const { fullname, img } = useAuthStore((state) => state.user);
+
   return (
     <section
       className={`h-[95%] flex ${
@@ -216,10 +219,10 @@ function BodyModalCreatePost({
             <div className="w-2/6 self-start">
               <header className="flex items-center m-4 gap-2">
                 <img
-                  src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg"
+                  src={img || USER_IMAGE_DEFAULT}
                   className="w-[32px] h-[32px] rounded-full"
                 />
-                <h1 className="font-semibold">User</h1>
+                <h1 className="font-semibold">{fullname}</h1>
               </header>
               <textarea
                 ref={captionInputElement}
