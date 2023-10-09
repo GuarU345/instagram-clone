@@ -6,6 +6,7 @@ import { NewPostObject } from "../types";
 import useAuthStore from "../hooks/useAuth";
 import useModal from "../hooks/useModal";
 import { USER_IMAGE_DEFAULT } from "../utils/const";
+import useFeed from "../hooks/useFeed";
 
 interface MediaIconProps {
   styles: string;
@@ -79,6 +80,7 @@ function useFileUpload() {
 function useCreate() {
   const token = useAuthStore((state) => state.token);
   const { hide } = useModal();
+  const { refetch } = useFeed();
 
   const { captionRef, handleIsCaption, handleNotCaption, isCaption } =
     useCaption();
@@ -103,6 +105,7 @@ function useCreate() {
 
     try {
       await createPostService(values as unknown as NewPostObject, token);
+      await refetch();
       hide();
     } catch (error) {
       console.log(error);

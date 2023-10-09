@@ -27,3 +27,23 @@ export async function getPostService(id: number, token: string) {
 
   return data;
 }
+
+export async function voteService(id: number, token: string) {
+  await api.get(`/post/${id}/vote`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+}
+
+export async function addCommentService(
+  id: number,
+  comment: string,
+  token: string
+) {
+  await api.post(
+    `/post/${id}/comment`,
+    { comment },
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+}
