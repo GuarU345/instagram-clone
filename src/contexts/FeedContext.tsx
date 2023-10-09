@@ -7,7 +7,7 @@ interface FeedContextState {
   posts: Post[];
   error: boolean;
   loading: boolean;
-  refetch: () => void;
+  refetch: () => Promise<void>;
   update: (post: number) => void;
 }
 
@@ -15,12 +15,12 @@ export const FeedContext = createContext<FeedContextState>({
   posts: [],
   error: false,
   loading: true,
-  refetch: () => {},
+  refetch: async () => {},
   update: () => {},
 });
 
 export function FeedProvider({ children }: PropsWithChildren) {
-  const { token } = useAuthStore();
+  const token = useAuthStore((state) => state.token);
 
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
@@ -44,9 +44,9 @@ export function FeedProvider({ children }: PropsWithChildren) {
     });
   };
 
-  const refetch = () => {
+  const refetch = async () => {
     setLoading(true);
-    fetch();
+    await fetch();
   };
 
   const update = (post: number) => {
@@ -54,7 +54,7 @@ export function FeedProvider({ children }: PropsWithChildren) {
   };
 
   useEffect(() => {
-    fetch();
+    fetch().then();
   }, []);
 
   return (

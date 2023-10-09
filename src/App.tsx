@@ -6,22 +6,29 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import { ModalProvider } from "./contexts/ModalContext";
 import { ModalList } from "./components/Modals";
+import { FeedProvider } from "./contexts/FeedContext";
 
 function App() {
   const { isAuth } = useAuthStore();
 
   return (
-    <ModalProvider modals={ModalList}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route element={<ProtectedRoute isAuth={isAuth} />}>
-            <Route path="/" element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </ModalProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          element={
+            <FeedProvider>
+              <ModalProvider modals={ModalList}>
+                <ProtectedRoute isAuth={isAuth} />
+              </ModalProvider>
+            </FeedProvider>
+          }
+        >
+          <Route path="/" element={<Home />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
